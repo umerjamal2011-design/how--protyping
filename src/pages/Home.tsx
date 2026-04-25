@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 import { ArrowRight, BookOpen, Users, GraduationCap, Calendar, Star, PlayCircle } from 'lucide-react';
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop", // Library
-  "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2022&auto=format&fit=crop", // Galaxy
-  "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=2070&auto=format&fit=crop", // Math
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop", // Classroom
+  "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2022&auto=format&fit=crop", // Majestic Galaxy
+  "https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=2074&auto=format&fit=crop", // Purple Deep Space
+  "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f41?q=80&w=2000&auto=format&fit=crop", // Starfield & Cosmic Dust
+  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop", // Earth from Orbit
 ];
 
 export function Home() {
@@ -29,40 +29,19 @@ export function Home() {
       <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-how-parchment">
         {/* Dynamic Background */}
         <div className="absolute inset-0 z-0">
-          {/* Subtle Vignette instead of heavy mask */}
-          <div className="absolute inset-0 bg-gradient-to-b from-how-parchment/40 via-transparent to-how-parchment/40 z-10"></div>
-          
-          {/* Large Vivid Heptagonal Background Motif - Desktop Only */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vh] h-[150vh] md:w-[120vh] md:h-[120vh] pointer-events-none hidden lg:block">
-            <div 
-              className="w-full h-full relative aspect-square"
-              style={{ clipPath: 'polygon(50% 0%, 92% 21%, 100% 60%, 80% 100%, 20% 100%, 0% 60%, 8% 21%)' }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
-                  className="absolute inset-0"
-                >
-                  <img 
-                    src={heroImages[currentImageIndex]} 
-                    alt="Background" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          {/* Full Screen Earth Background - Desktop Only */}
+          <div className="absolute inset-0 pointer-events-none hidden lg:block overflow-hidden bg-black">
+            {/* Using a static frame of Earth as requested */}
+            <img 
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+              alt="Planet Earth" 
+              className="w-full h-full object-cover opacity-80"
+              referrerPolicy="no-referrer"
+            />
           </div>
         </div>
         
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center">
-          {/* Subtle Content Backing Overlay */}
-          <div className="absolute inset-x-0 top-[-10%] bottom-[-10%] -z-10 bg-gradient-to-b from-how-parchment/90 via-how-parchment/40 to-transparent blur-3xl opacity-80 pointer-events-none"></div>
-          
           <div className="flex flex-col items-center gap-16 md:gap-24">
             {/* Logo Section (Centered) */}
             <div className="w-full max-w-lg">
@@ -74,64 +53,35 @@ export function Home() {
               >
                 {/* Official Logo */}
                 <div className="relative w-full">
-                  {/* The Official Logo Image */}
-                  <img 
-                    src="https://h-o-w.org/wp-content/uploads/2025/06/Asset-1xxxhdpi.png" 
-                    alt="House of Wisdom Logo" 
-                    className="w-full h-auto relative z-10 pointer-events-none"
-                    referrerPolicy="no-referrer"
-                  />
-
-                  {/* Dynamic Image Overlay - Tablet/Mobile Only */}
-                  <div 
-                    className="absolute z-20 pointer-events-none lg:hidden"
-                    style={{ 
-                      top: '0%', 
-                      left: '24.3%', 
-                      width: '36.2%', 
-                      height: '80.4%' 
-                    }}
-                  >
-                    <div 
-                      className="w-full h-full overflow-hidden relative"
-                      style={{ clipPath: 'polygon(50% 0%, 92% 21%, 100% 60%, 80% 100%, 20% 100%, 0% 60%, 8% 21%)' }}
-                    >
-                      <AnimatePresence mode="wait">
-                        <motion.img 
-                          key={currentImageIndex}
-                          src={heroImages[currentImageIndex]} 
-                          alt="Learning Journey" 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 1 }}
-                          className="w-full h-full object-cover opacity-90 mix-blend-multiply"
-                          referrerPolicy="no-referrer"
-                        />
-                      </AnimatePresence>
-                      
-                      {/* Subtle Sundial Needle Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.div 
-                          animate={{ rotate: [0, 360] }}
-                          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                          className="w-0.5 h-1/3 bg-how-bronze/30 origin-bottom rounded-full"
-                        />
-                      </div>
-                    </div>
+                  {/* --- DESKTOP LOGO DISPLAY --- */}
+                  <div className="relative w-full hidden lg:block">
+                    {/* Base image: Inverted to white (assuming original black text) */}
+                    <img 
+                      src="https://h-o-w.org/wp-content/uploads/2025/06/Asset-1xxxhdpi.png" 
+                      alt="House of Wisdom Logo" 
+                      className="w-full h-auto relative z-10 pointer-events-none brightness-0 invert drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
+                      referrerPolicy="no-referrer"
+                    />
+                    
+                    {/* Overlay: Original image masked to only the center mark (green part) */}
+                    <img 
+                      src="https://h-o-w.org/wp-content/uploads/2025/06/Asset-1xxxhdpi.png" 
+                      alt="" 
+                      className="w-full h-auto absolute inset-0 z-20 pointer-events-none"
+                      style={{ clipPath: 'polygon(25% 0.5%, 61% 0.5%, 61% 88.5%, 25% 88.5%)' }}
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
-                </div>
 
-                {/* Floating badge */}
-                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-how-white p-4 md:p-6 rounded-3xl shadow-xl min-w-[240px] md:min-w-[280px] z-30 border border-how-parchment-dark">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-how-bronze/20 flex items-center justify-center text-how-bronze">
-                      <Star size={24} fill="currentColor" />
-                    </div>
-                    <div className="text-left">
-                      <p className="font-serif text-lg md:text-xl leading-tight">Every Child</p>
-                      <p className="font-serif text-xl italic text-how-green leading-tight">is a Hero</p>
-                    </div>
+                  {/* --- MOBILE LOGO DISPLAY --- */}
+                  <div className="relative w-full lg:hidden">
+                    {/* The Official Logo Image */}
+                    <img 
+                      src="https://h-o-w.org/wp-content/uploads/2025/06/Asset-1xxxhdpi.png" 
+                      alt="House of Wisdom Logo" 
+                      className="w-full h-auto relative z-10 pointer-events-none"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -144,13 +94,10 @@ export function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="inline-block py-1 px-3 rounded-full border border-how-bronze text-how-bronze text-xs font-bold tracking-widest uppercase mb-6">
-                  A Living Educational Institution
-                </span>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] tracking-tight mb-8 text-balance">
-                  Nurturing <span className="text-how-green italic">Curiosity</span> & Character.
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] tracking-tight mb-8 text-balance lg:text-white drop-shadow-sm lg:drop-shadow-md transition-colors">
+                  Nurturing <span className="text-how-green lg:text-[#B2D2A4] auto-color italic">Curiosity</span> & Character.
                 </h1>
-                <p className="text-lg md:text-2xl text-how-ink/80 max-w-2xl mx-auto mb-12 leading-relaxed text-pretty">
+                <p className="text-lg md:text-2xl text-how-ink/80 lg:text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed text-pretty lg:drop-shadow-md transition-colors">
                   House of Wisdom is a distinctive educational space where families, schools, and learners discover programs, resources, and experiences designed to shape the heroes of tomorrow.
                 </p>
                 <div className="flex flex-wrap justify-center gap-6">
@@ -176,19 +123,22 @@ export function Home() {
               title: "For Families",
               desc: "Enriching programs, camps, and educational toys designed to spark joy and learning at home.",
               icon: Users,
-              link: "/programs/kids"
+              link: "/programs/kids",
+              img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=2070&auto=format&fit=crop"
             },
             {
               title: "For Schools",
               desc: "Guided tours, timeline exhibitions, and curriculum-aligned resources for educators.",
               icon: GraduationCap,
-              link: "/programs/tours"
+              link: "/programs/tours",
+              img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop"
             },
             {
               title: "For Lifelong Learners",
               desc: "Topical sessions, adult programs, and deep dives into the Seven Episodes of Big History.",
               icon: BookOpen,
-              link: "/programs/adults"
+              link: "/programs/adults",
+              img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop"
             }
           ].map((path, i) => (
             <motion.div 
@@ -197,21 +147,195 @@ export function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-how-white p-10 rounded-3xl shadow-sm hover:shadow-md transition-shadow group"
+              className="group relative overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all min-h-[480px] lg:min-h-[560px] flex flex-col justify-end p-8 md:p-10"
             >
-              <div className="w-16 h-16 rounded-2xl bg-how-parchment flex items-center justify-center text-how-green mb-8 group-hover:bg-how-green group-hover:text-how-white transition-colors">
-                <path.icon size={32} strokeWidth={1.5} />
+              {/* Background Image */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={path.img} 
+                  alt={path.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
               </div>
-              <h3 className="text-2xl font-serif mb-4">{path.title}</h3>
-              <p className="text-how-ink/70 mb-8 leading-relaxed">{path.desc}</p>
-              <Button href={path.link} variant="link" icon>Discover more</Button>
+
+              <div className="relative z-10">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-6 md:mb-8 border border-white/30 group-hover:bg-how-green group-hover:border-how-green transition-colors duration-300">
+                  <path.icon size={28} strokeWidth={1.5} className="md:w-[32px] md:h-[32px]" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4 text-white drop-shadow-sm">{path.title}</h3>
+                <p className="text-white/80 mb-6 md:mb-8 leading-relaxed max-w-sm drop-shadow-sm text-sm md:text-base">{path.desc}</p>
+                <div className="inline-flex items-center gap-2 text-how-green font-medium group-hover:text-how-bronze transition-colors">
+                  <Link to={path.link} className="flex items-center gap-2 hover:underline underline-offset-4">
+                    <span>Discover more</span>
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
       </Section>
 
+      {/* All Programs Slider */}
+      <section className="py-16 md:py-24 overflow-hidden relative bg-[#8DC63F] text-how-ink">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <SectionHeader 
+            title="Explore All Programs" 
+            subtitle="Discover Your Path" 
+            className="[&>span]:text-how-ink [&>h2]:text-how-ink"
+          />
+        </div>
+        
+        {/* Full-bleed scrollable container */}
+        <div className="w-full relative">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-12 pb-12 pt-4 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {[
+              { id: "young-explorers-camp", title: "Young Explorers Camp", category: "Kids", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=2070&auto=format&fit=crop" },
+              { id: "big-history-workshop", title: "Big History Workshop", category: "Teens", img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2022&auto=format&fit=crop" },
+              { id: "astronomy-night", title: "Astronomy Night", category: "Family", img: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f41?q=80&w=2000&auto=format&fit=crop" },
+              { id: "educator-training", title: "Educator Training", category: "Teachers", img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop" },
+              { id: "leadership-seminar", title: "Leadership Seminar", category: "Adults", img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" },
+              { id: "creative-arts", title: "Creative Arts", category: "All Ages", img: "https://images.unsplash.com/photo-1460661419201-66c76c13d22d?q=80&w=2071&auto=format&fit=crop" },
+            ].map((program, i) => (
+              <a 
+                key={i} 
+                href={`#${program.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(program.id)?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative flex-none w-[280px] md:w-[360px] aspect-[4/5] rounded-3xl overflow-hidden snap-start shrink-0 shadow-md hover:shadow-xl transition-all"
+              >
+                <img 
+                  src={program.img} 
+                  alt={program.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-how-ink/90 via-how-ink/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-white text-xs font-bold tracking-widest uppercase mb-4 self-start">
+                    {program.category}
+                  </span>
+                  <h3 className="text-2xl font-serif text-white mb-2 leading-tight drop-shadow-md">{program.title}</h3>
+                  <div className="flex items-center text-how-green font-medium mt-2 gap-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                    <span>Learn more</span>
+                    <ArrowRight size={16} />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            html {
+              scroll-behavior: smooth;
+            }
+          `}} />
+        </div>
+      </section>
+
+      {/* Program Detailed Sections */}
+      {[
+        {
+          id: "young-explorers-camp",
+          title: "Young Explorers Camp",
+          subtitle: "Kids Program",
+          desc: "A hands-on camp designed to ignite curiosity in young minds. Children will engage in interactive experiments, outdoor explorations, and creative projects that make learning an adventure.",
+          features: ["Interactive science experiments", "Nature exploration", "Creative arts and crafts"],
+          img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=2070&auto=format&fit=crop",
+          bg: "white",
+        },
+        {
+          id: "big-history-workshop",
+          title: "Big History Workshop",
+          subtitle: "Teens Program",
+          desc: "Dive deep into the grand narrative of the universe. This workshop connects diverse disciplines to help teens understand how everything in our world is interconnected.",
+          features: ["Cosmic evolution mapping", "Historical timeline building", "Critical thinking exercises"],
+          img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2022&auto=format&fit=crop",
+          bg: "parchment",
+        },
+        {
+          id: "astronomy-night",
+          title: "Astronomy Night",
+          subtitle: "Family Experience",
+          desc: "Join us under the stars for an evening of cosmic discovery. Perfect for families wanting to learn about constellations, planets, and the vastness of space together.",
+          features: ["Stargazing with telescopes", "Constellation storytelling", "Astrophysics basics for all ages"],
+          img: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f41?q=80&w=2000&auto=format&fit=crop",
+          bg: "green-dark",
+        },
+        {
+          id: "educator-training",
+          title: "Educator Training",
+          subtitle: "Professional Development",
+          desc: "Empower your teaching with innovative methodologies. Our training sessions provide educators with the tools to deliver engaging, cross-disciplinary lessons.",
+          features: ["Curriculum integration strategies", "Interactive teaching techniques", "Resource sharing network"],
+          img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+          bg: "white",
+        },
+        {
+          id: "leadership-seminar",
+          title: "Leadership Seminar",
+          subtitle: "Adult Program",
+          desc: "Develop your leadership potential through the lens of history and philosophy. Learn how the greatest minds shaped the world and apply those lessons today.",
+          features: ["Philosophical leadership frameworks", "Historical case studies", "Strategic planning workshops"],
+          img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop",
+          bg: "parchment",
+        },
+        {
+          id: "creative-arts",
+          title: "Creative Arts",
+          subtitle: "All Ages",
+          desc: "Express yourself through various artistic mediums. Our creative arts program encourages participants to explore their imagination while learning new skills.",
+          features: ["Painting and sculpting", "Digital art introduction", "Collaborative community projects"],
+          img: "https://images.unsplash.com/photo-1460661419201-66c76c13d22d?q=80&w=2071&auto=format&fit=crop",
+          bg: "green",
+        }
+      ].map((prog, index) => (
+        <Section bg={prog.bg as any} id={prog.id} key={prog.id}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className={index % 2 === 1 ? "lg:order-last" : ""}>
+              <SectionHeader 
+                title={prog.title} 
+                subtitle={prog.subtitle} 
+              />
+              <p className="opacity-80 text-lg mb-8 leading-relaxed">
+                {prog.desc}
+              </p>
+              <ul className="space-y-4 mb-10">
+                {prog.features.map((item, i) => (
+                  <li key={i} className="flex items-center gap-4">
+                    <div className="w-8 h-8 rounded-full border border-how-bronze flex items-center justify-center text-sm font-serif text-how-bronze shrink-0">
+                      {i + 1}
+                    </div>
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button href="/programs" variant={prog.bg.includes('green') ? 'secondary' : 'primary'} icon>Enroll Now</Button>
+            </div>
+            <div className={`relative ${index % 2 === 1 ? "lg:order-first" : ""}`}>
+              <div className="aspect-square rounded-full border border-current opacity-20 p-8 absolute inset-0"></div>
+              <div className="w-full h-full rounded-full overflow-hidden relative m-4 md:m-8 aspect-square flex border border-current">
+                <img 
+                  src={prog.img} 
+                  alt={prog.title} 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </div>
+        </Section>
+      ))}
+
       {/* Upcoming Events Slider (Simplified for prototype) */}
-      <Section>
+      <Section bg="parchment-dark">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <SectionHeader 
             title="Upcoming Events" 

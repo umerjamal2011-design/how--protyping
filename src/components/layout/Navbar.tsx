@@ -42,7 +42,10 @@ export function Navbar() {
           <img 
             src="https://h-o-w.org/wp-content/uploads/2025/06/Asset-1xxxhdpi.png" 
             alt="House of Wisdom" 
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className={cn(
+              "h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105",
+              !isScrolled && "brightness-0 invert drop-shadow-md"
+            )}
             referrerPolicy="no-referrer"
           />
         </Link>
@@ -53,14 +56,24 @@ export function Navbar() {
             <Link
               key={link.name}
               to={link.href}
-              className="text-sm font-medium tracking-wide text-how-ink/80 hover:text-how-green transition-colors"
+              className={cn(
+                "text-sm font-medium tracking-wide transition-colors duration-300",
+                isScrolled 
+                  ? "text-how-ink/80 hover:text-how-green" 
+                  : "text-white/90 hover:text-white drop-shadow-md"
+              )}
             >
               {link.name}
             </Link>
           ))}
           <Link
             to="/contact"
-            className="ml-4 px-5 py-2.5 rounded-full border border-how-green text-how-green text-sm font-medium hover:bg-how-green hover:text-how-white transition-all duration-300"
+            className={cn(
+              "ml-4 px-5 py-2.5 rounded-full border text-sm font-medium transition-all duration-300",
+              isScrolled
+                ? "border-how-green text-how-green hover:bg-how-green hover:text-how-white"
+                : "border-white/90 text-white/90 hover:bg-white focus:bg-white hover:text-black focus:text-black shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
+            )}
           >
             Contact Us
           </Link>
@@ -68,7 +81,10 @@ export function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden z-50 p-2 text-how-ink"
+          className={cn(
+            "md:hidden z-50 p-2 transition-colors duration-300",
+            (isScrolled || mobileMenuOpen) ? "text-how-ink" : "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
+          )}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
